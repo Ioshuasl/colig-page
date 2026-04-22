@@ -1,4 +1,4 @@
-import { Eye, EyeOff, Stethoscope } from 'lucide-react';
+import { Stethoscope } from 'lucide-react';
 import { motion } from 'motion/react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,6 @@ export function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { syncSession } = useAuth();
   const navigate = useNavigate();
 
@@ -65,24 +64,14 @@ export function LoginPage() {
 
           <div>
             <label className="block text-sm font-medium text-white/80 mb-1.5">Senha</label>
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-11 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="••••••••"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
-                aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
-              >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
-            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              placeholder="••••••••"
+              required
+            />
           </div>
 
           {error && (
