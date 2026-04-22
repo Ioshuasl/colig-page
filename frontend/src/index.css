@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: rgba(3, 119, 116, 1);
+  --color-bg-deep: rgba(1, 18, 25, 1);
+  --color-accent-dark: rgba(0, 75, 71, 1);
+  --color-darkest: rgba(0, 20, 23, 1);
+  --color-mid-teal: rgba(1, 83, 77, 1);
+  --color-light-teal: rgba(12, 119, 109, 1);
+  --color-shadow-teal: rgba(9, 61, 59, 1);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-deep text-white font-sans antialiased selection:bg-primary/30 selection:text-white;
+  }
+}
