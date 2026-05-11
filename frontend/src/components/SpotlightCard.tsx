@@ -2,11 +2,12 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
 
-interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export type SpotlightCardProps = Omit<
+  React.ComponentPropsWithoutRef<typeof motion.div>,
+  'children'
+> & {
   children: React.ReactNode;
-  className?: string;
-  key?: React.Key;
-}
+};
 
 export function SpotlightCard({ children, className, ...props }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null);

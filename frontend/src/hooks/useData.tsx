@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { eventService, memberService, newsService } from '../services';
+import { eventService, ligaService, memberService, newsService } from '../services';
 import type {
   CreateEventInput,
+  CreateLigaInput,
   CreateMemberInput,
   CreateNewsInput,
   Event,
+  Liga,
   Member,
   News,
   UpdateEventInput,
+  UpdateLigaInput,
   UpdateMemberInput,
   UpdateNewsInput,
 } from '../types';
@@ -16,6 +19,7 @@ interface DataContextType {
   members: Member[];
   events: Event[];
   news: News[];
+  ligas: Liga[];
   addMember: (member: CreateMemberInput) => Promise<void>;
   updateMember: (id: number, member: UpdateMemberInput) => Promise<void>;
   deleteMember: (id: number) => Promise<void>;
@@ -25,6 +29,9 @@ interface DataContextType {
   addNews: (newsItem: CreateNewsInput) => Promise<void>;
   updateNews: (id: number, newsItem: UpdateNewsInput) => Promise<void>;
   deleteNews: (id: number) => Promise<void>;
+  addLiga: (liga: CreateLigaInput) => Promise<void>;
+  updateLiga: (id: number, liga: UpdateLigaInput) => Promise<void>;
+  deleteLiga: (id: number) => Promise<void>;
   reloadData: () => Promise<void>;
 }
 
@@ -34,17 +41,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [members, setMembers] = useState<Member[]>([]);
   const [events, setEvents] = useState<Event[]>([]);
   const [news, setNews] = useState<News[]>([]);
+  const [ligas, setLigas] = useState<Liga[]>([]);
 
   const reloadData = async () => {
-    const [membersResponse, eventsResponse, newsResponse] = await Promise.all([
+    const [membersResponse, eventsResponse, newsResponse, ligasResponse] = await Promise.all([
       memberService.findAll(),
       eventService.findAll(),
       newsService.findAll(),
+      ligaService.findAll(),
     ]);
 
     setMembers(membersResponse.data);
     setEvents(eventsResponse.data);
     setNews(newsResponse.data);
+    setLigas(ligasResponse.data);
   };
 
   useEffect(() => {
@@ -96,12 +106,28 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     setNews((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const addLiga = async (liga: CreateLigaInput) => {
+    const created = await ligaService.create(liga);
+    setLigas((prev) => [created, ...prev]);
+  };
+
+  const updateLiga = async (id: number, liga: UpdateLigaInput) => {
+    const updated = await ligaService.update(id, liga);
+    setLigas((prev) => prev.map((item) => (item.id === id ? updated : item)));
+  };
+
+  const deleteLiga = async (id: number) => {
+    await ligaService.remove(id);
+    setLigas((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <DataContext.Provider value={{
-      members, events, news,
+      members, events, news, ligas,
       addMember, updateMember, deleteMember,
       addEvent, updateEvent, deleteEvent,
       addNews, updateNews, deleteNews,
+      addLiga, updateLiga, deleteLiga,
       reloadData
     }}>
       {children}
@@ -117,4 +143,4 @@ export function useData() {
   return context;
 }
 
-export type { Member, Event, News };
+export type { Member, Event, News, Liga };

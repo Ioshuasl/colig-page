@@ -3,7 +3,7 @@ import axios from "axios";
 export const AUTH_TOKEN_KEY = "colig_token";
 export const AUTH_USER_KEY = "colig_user";
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3333/api";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 export const getAuthToken = (): string | null => localStorage.getItem(AUTH_TOKEN_KEY);
 

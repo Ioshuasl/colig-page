@@ -4,6 +4,7 @@ export { userService } from "./userService";
 export { memberService } from "./memberService";
 export { eventService } from "./eventService";
 export { newsService } from "./newsService";
+export { ligaService } from "./ligaService";
 export { s3Service } from "./s3Service";
 export { docsService } from "./docsService";
 export { systemService } from "./systemService";

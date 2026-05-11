@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL || "http://localhost:3333";
+const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL || "http://localhost:3000";
 
 export const systemService = {
   async getHealth() {

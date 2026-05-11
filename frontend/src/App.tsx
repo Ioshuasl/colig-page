@@ -11,6 +11,7 @@ import { AdminLayout } from './layouts/AdminLayout';
 import { MembersPage } from './pages/admin/MembersPage';
 import { EventsPage } from './pages/admin/EventsPage';
 import { NewsPage } from './pages/admin/NewsPage';
+import { LigasPage } from './pages/admin/LigasPage';
 import { UsersPage } from './pages/admin/UsersPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -67,6 +68,7 @@ function AnimatedRoutes() {
           <Route path="members" element={<MembersPage />} />
           <Route path="events" element={<EventsPage />} />
           <Route path="news" element={<NewsPage />} />
+          <Route path="ligas" element={<LigasPage />} />
           <Route path="users" element={<UsersPage />} />
         </Route>
       </Routes>

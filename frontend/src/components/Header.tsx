@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, Stethoscope } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useAuth } from '../hooks/useAuth';
+import logoColig from '../assets/logo_colig.png';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +23,7 @@ export function Header() {
   const navLinks = [
     { name: 'Início', path: '/' },
     { name: 'Quem Somos', path: '/#about' },
+    { name: 'Ligas', path: '/#ligas' },
     { name: 'Eventos', path: '/#events' },
     { name: 'Notícias', path: '/#news' },
   ];
@@ -34,9 +36,14 @@ export function Header() {
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 group-hover:bg-primary/30 transition-colors">
-            <Stethoscope className="w-6 h-6 text-primary" />
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
+          <div className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-primary/30 bg-black/50 ring-1 ring-primary/20 transition-[box-shadow,background-color] group-hover:bg-black/60 group-hover:ring-primary/40">
+            <img
+              src={logoColig}
+              alt=""
+              className="h-7 w-7 sm:h-9 sm:w-9 object-contain"
+              decoding="async"
+            />
           </div>
           <span className="text-xl font-bold tracking-tight">COLIG</span>
         </Link>

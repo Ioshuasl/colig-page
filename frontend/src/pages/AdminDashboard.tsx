@@ -1,4 +1,4 @@
-import { Calendar, Newspaper, ShieldUser, Users } from "lucide-react";
+import { Calendar, GraduationCap, Newspaper, ShieldUser, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { useData } from "../hooks/useData";
@@ -23,6 +23,12 @@ const quickLinks = [
     icon: Newspaper,
   },
   {
+    title: "Ligas",
+    description: "Cadastre ligas academicas, logos e representantes.",
+    to: "/admin/ligas",
+    icon: GraduationCap,
+  },
+  {
     title: "Usuarios",
     description: "Controle acessos administrativos da plataforma.",
     to: "/admin/users",
@@ -31,7 +37,7 @@ const quickLinks = [
 ];
 
 export function AdminDashboard() {
-  const { members, events, news } = useData();
+  const { members, events, news, ligas } = useData();
 
   return (
     <div className="space-y-8">
@@ -42,7 +48,7 @@ export function AdminDashboard() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,6 +74,15 @@ export function AdminDashboard() {
         >
           <p className="text-white/60 text-sm">Noticias publicadas</p>
           <p className="text-3xl font-bold mt-2">{news.length}</p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.12 }}
+          className="bg-darkest/50 border border-white/10 rounded-2xl p-6"
+        >
+          <p className="text-white/60 text-sm">Ligas cadastradas</p>
+          <p className="text-3xl font-bold mt-2">{ligas.length}</p>
         </motion.div>
       </div>
 
