@@ -78,10 +78,12 @@ export function LandingPage() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="#about"
+            href="https://drive.google.com/drive/folders/1EIvDTN5Y508h65J14J2jhxSzaL1nxiTC"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm sm:text-base font-medium transition-colors flex items-center justify-center min-h-[44px]"
           >
-            Conheça o COLIG
+            Drive Colig
           </a>
         </motion.div>
       </section>
